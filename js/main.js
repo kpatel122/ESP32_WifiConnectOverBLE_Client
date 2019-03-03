@@ -49,8 +49,19 @@ function AddWifiTableRow(name)
 // Override `receive` method to log incoming data to the terminal.
 terminal.receive = function(data) {
   //logToTerminal(data,'in')
+  var json = JSON.parse(data);
+  logToTerminal("Parsing\n",'in');
+  logToTerminal("JSON parsed " + json +"\n",'in');
+  
   document.getElementById("ScanTable").style = "display:block";
   document.getElementById("ScanTableRows").innerHTML = "";
+  
+  for (var i = 0; i < json.length; i++) {
+    var object = json[i];
+    AddWifiTableRow(object.ssid);
+  }
+  
+  
 };
 
 // Override default log method to output messages to the terminal and console.
