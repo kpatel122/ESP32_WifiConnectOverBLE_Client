@@ -40,9 +40,17 @@ console.log("CHARACTERISTIC_UUID_RX: " + CHARACTERISTIC_UUID_RX.toLowerCase());
 const terminal = new BluetoothTerminal(serviveuuid.toLowerCase(),CHARACTERISTIC_UUID_TX.toLowerCase(),
 '\n','\n');
 
+function AddWifiTableRow(name)
+{
+  var rowStr = "<tr><td>"+name+"</td></tr>";
+  document.getElementById("ScanTableRows").innerHTML+=rowStr;
+}
+
 // Override `receive` method to log incoming data to the terminal.
 terminal.receive = function(data) {
-  logToTerminal(data, 'in');
+  //logToTerminal(data,'in')
+  document.getElementById("ScanTable").style = "display:block";
+  document.getElementById("ScanTableRows").innerHTML = "";
 };
 
 // Override default log method to output messages to the terminal and console.
