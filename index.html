@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="utf-8">
@@ -10,8 +11,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="msapplication-starturl" content="./">
-    <meta name="description"
-          content="Progressive Web Application for serial communication with your own Bluetooth Low Energy (Smart) devices">
+    <meta name="description" content="Progressive Web Application for serial communication with your own Bluetooth Low Energy (Smart) devices">
 
     <title>Web Bluetooth Terminal</title>
 
@@ -27,7 +27,37 @@
     <link href="css/normalize.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
+    <style>
+        table {
+              font-family: arial, sans-serif;
+              margin-left: auto;
+              margin-right: auto;
+              border-collapse: collapse;
+
+            }
+            
+            td {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+               
+            }
+            
+            th {
+              border: 1px solid #dddddd;
+              text-align: left;
+              padding: 8px;
+              background-color: #00ff00;
+            }
+            
+            tr:nth-child(even) {
+              background-color: #dddddd;
+            }
+    </style>
+
+
 </head>
+
 <body>
 
     <div class="app">
@@ -62,11 +92,51 @@
 
         </form>
 
+        <h2 style="text-align:center">ESP32 Wifi Networks</h2>
+
+        <div id="ScanTable" style="display:block;">
+            <table>
+                <tr>
+                  <th>Name</th>    
+                </tr>
+                <div id="ScanTableEntry">
+                    <tr>
+                    <td>Alfreds Futterkiste</td>
+                    </tr>
+                    <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    </tr>
+                    <tr>
+                    <td>Ernst Handel</td>
+                    </tr>
+                    <tr>
+                    <td>Island Trading</td>
+                    </tr>
+                    <tr>
+                    <td>Laughing Bacchus Winecellars</td>
+                    </tr>
+                    <tr>
+                    <td>Magazzini Alimentari Riuniti</td>
+                    </tr>
+                </div>
+            </table>
+        </div>
+
+
+
+
     </div>
+
+    
+  
 
     <script src="js/BluetoothTerminal.js"></script>
     <script src="js/main.js"></script>
     <script src="js/companion.js" data-service-worker="sw.js"></script>
+    
+
+
 
 </body>
+
 </html>
