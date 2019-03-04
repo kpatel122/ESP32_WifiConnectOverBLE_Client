@@ -46,6 +46,9 @@ function AddWifiTableRow(name)
   document.getElementById("ScanTableRows").innerHTML+=rowStr;
 }
 
+AddWifiTableRow("Test1");
+AddWifiTableRow("Test2");
+
 // Override `receive` method to log incoming data to the terminal.
 terminal.receive = function(data) {
   //logToTerminal(data,'in')
