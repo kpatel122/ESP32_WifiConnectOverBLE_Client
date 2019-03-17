@@ -40,24 +40,57 @@ console.log("CHARACTERISTIC_UUID_RX: " + CHARACTERISTIC_UUID_RX.toLowerCase());
 const terminal = new BluetoothTerminal(serviveuuid.toLowerCase(),CHARACTERISTIC_UUID_TX.toLowerCase(),
 '\n','\n');
 
-function AddWifiTableRow(name)
+function ConnectW(ssid)
 {
-  var rowStr = "<tr><td>"+name+"</td></tr>";
-  document.getElementById("ScanTableRows").innerHTML+=rowStr;
+  window.alert('connect to ' + ssid);
 }
 
-AddWifiTableRow("Test1");
-AddWifiTableRow("Test2");
+function ClearWifiTable()
+{
+  var Parent = document.getElementById('ScanTable');
+  Parent.getElementsByTagName("tbody")[0].innerHTML = "";
+}
+
+function AddWifiTableRow(name)
+{
+
+  //name = document.getElementById('sid').value;//tmp
+  var tableRef = document.getElementById('ScanTable').getElementsByTagName('tbody')[0];
+
+  // Insert a row in the table at the last row
+  var newRow   = tableRef.insertRow(tableRef.rows.length);
+  //newRow.id = "id_" + name;
+  newRow.setAttribute("id","id_" + name);
+  newRow.setAttribute("onclick", "ConnectW(\""+name+"\");");
+  
+  //newRow.onclick=Connect();
+  
+  // Insert a row at the end of the table : var newCell = tableRef.insertRow(-1);
+  // Insert a cell in the row at index 0 
+  var newCell  = newRow.insertCell(0);
+
+  // Append a text node to the cell
+  var newText  = document.createTextNode(name);
+  newCell.appendChild(newText);
+}
+
+//AddWifiTableRow("Test1");
+//AddWifiTableRow("Test2");
 
 // Override `receive` method to log incoming data to the terminal.
 terminal.receive = function(data) {
-  //logToTerminal(data,'in')
-  var json = JSON.parse(data);
-  logToTerminal("Parsing\n",'in');
-  logToTerminal("JSON parsed " + json +"\n",'in');
+   
+  ClearWifiTable();
   
-  document.getElementById("ScanTable").style = "display:block";
-  document.getElementById("ScanTableRows").innerHTML = "";
+  var json = JSON.parse(data);
+  //logToTerminal("Parsing\n",'in');
+  //logToTerminal("JSON parsed " + json +"\n",'in');
+  
+  document.getElementById("WifiSSID").style = "display:block";
+  
+  //clear table rows
+  //var Table = document.getElementById("WifiSSID");
+  //Table.innerHTML = "";
   
   for (var i = 0; i < json.length; i++) {
     var object = json[i];

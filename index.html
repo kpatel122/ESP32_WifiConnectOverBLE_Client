@@ -33,6 +33,7 @@
               margin-left: auto;
               margin-right: auto;
               border-collapse: collapse;
+              table-layout: fixed;
 
             }
             
@@ -40,6 +41,8 @@
               border: 1px solid #dddddd;
               text-align: left;
               padding: 8px;
+              word-wrap:
+              break-word;
                
             }
             
@@ -85,32 +88,31 @@
         <form id="send-form" class="send-form">
 
             <input id="input" type="text" aria-label="Input" autocomplete="off" placeholder="Type something to send...">
-
             <button type="submit" aria-label="Send">
                 <i class="material-icons">send</i>
             </button>
 
         </form>
 
+        <div id="WifiSSID" style="display:none">
         <h2 style="text-align:center">ESP32 Wifi Networks</h2>
-        <table>       
-            <div id="ScanTable" style="display:block;">    
+        <table style="width: 30%" id="ScanTable">
+            <thead>
                 <tr>
-                  <th>Name</th>    
+                    <th>Name</th>
                 </tr>
-                <div id="ScanTableRows">
-                    
-                </div>
-            
-        </div>
+            </thead>
+            <tbody>
+            </tbody>
+            </div>
         </table>
+        </div>
     </div>
 
     <script src="js/BluetoothTerminal.js"></script>
     <script src="js/main.js"></script>
     <script src="js/companion.js" data-service-worker="sw.js"></script>
     
-
 </body>
 
 </html>
